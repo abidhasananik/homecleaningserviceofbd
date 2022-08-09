@@ -5,6 +5,7 @@ import Navbar from '../Shared/Navbar/Navbar';
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
+import { computeHeadingLevel } from '@testing-library/react';
 
 const Dashboard = () => {
 
@@ -14,7 +15,7 @@ const Dashboard = () => {
     const [mechanics, setMechanics] = useState([]);
     // get mechanics from database
     useEffect(() => {
-        fetch('https://raufuautomotive.herokuapp.com/mechanics')
+        fetch('https://homecleaningserviceofbd.herokuapp.com/ServiceBoys')
             .then(res => res.json())
             .then(data => {
                 setMechanics(data)
@@ -27,7 +28,7 @@ const Dashboard = () => {
     // get users from database
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch('https://raufuautomotive.herokuapp.com/users')
+        fetch('https://homecleaningserviceofbd.herokuapp.com/users')
             .then(res => res.json())
             .then(data => {
                 setUsers(data.users)
@@ -39,7 +40,7 @@ const Dashboard = () => {
     // get bookings from database
     const [bookings, setBookings] = useState([]);
     useEffect(() => {
-        fetch('https://raufuautomotive.herokuapp.com/orders')
+        fetch('https://homecleaningserviceofbd.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => {
                 setBookings(data.orders);
@@ -57,7 +58,7 @@ const Dashboard = () => {
     // add mechanic to database
     const addMechanic = (data) => {
         const mechanicDetails = data;
-        fetch('https://raufuautomotive.herokuapp.com/mechanic', {
+        fetch('https://homecleaningserviceofbd.herokuapp.com/mechanic', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -79,7 +80,7 @@ const Dashboard = () => {
 
     // remove mechanic from database
     const removeMechanic = (id) => {
-        fetch(`https://raufuautomotive.herokuapp.com/mechanic/${id}`, {
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/mechanic/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -94,7 +95,7 @@ const Dashboard = () => {
 
     // remove Appointment from database
     const removeAppointment = (id) => {
-        fetch(`https://raufuautomotive.herokuapp.com/order/${id}`, {
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/order/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -109,7 +110,7 @@ const Dashboard = () => {
 
     // remove user from database
     const removeUser = (id) => {
-        fetch(`https://raufuautomotive.herokuapp.com/user/${id}`, {
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/user/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -140,7 +141,7 @@ const Dashboard = () => {
     // update order to database
     const updateOrder = (bookingData) => {
         const orderDetails = bookingData;
-        fetch(`https://raufuautomotive.herokuapp.com/order/${user._id}`, {
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/order/${user._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -162,6 +163,8 @@ const Dashboard = () => {
                 document.getElementById('edit_appointments').style.display = 'none';
             })
     }
+
+    // console.log(mechanics)
 
     return (
         <div>
@@ -246,11 +249,10 @@ const Dashboard = () => {
                                                 <th>Client Name</th>
                                                 <th>Date</th>
                                                 <th>Mechanic Name</th>
-                                                <th>Car Engine</th>
-                                                <th>Car License</th>
+                                                
                                                 <th>Client Phone</th>
                                                 <th>Client Address</th>
-                                                <th>Details</th>
+                                                
                                                 <th>Remove</th>
                                             </tr>
                                         </thead>
@@ -262,14 +264,10 @@ const Dashboard = () => {
                                                         <td>{booking?.data?.name}</td>
                                                         <td>{booking?.data?.date}</td>
                                                         <td>{booking?.mechanicName}</td>
-                                                        <td>{booking?.data?.car_engine}</td>
-                                                        <td>{booking?.data?.car_license}</td>
+                                                        
                                                         <td>{booking?.data?.phone}</td>
                                                         <td>{booking?.data?.address}</td>
-                                                        <td><button onClick={() => {
-                                                            document.getElementById('edit_appointments').style.display = 'block';
-                                                            setUser(booking);
-                                                        }} className='btn btn-sm btn-outline-dark'>Edit</button></td>
+                                                       
                                                         <td><button onClick={() => removeAppointment(booking._id)} className='btn btn-danger'>Delete</button></td>
                                                     </tr>
                                                 ))
@@ -283,90 +281,7 @@ const Dashboard = () => {
                                 </p>
                         }
 
-                        <div id='edit_appointments' style={{ display: 'none' }} className="">
-
-                            <h3 className='fs-5 text-center'>Edit Appointments</h3>
-
-                            {
-                                user && 
-                                <form onSubmit={handleSubmit2(onSubmit2)}>
-                                <div className="form-group mt-2">
-                                    <label htmlFor="name" className='p-1'>Client's Name</label>
-                                    <input type="text"
-                                        defaultValue={user?.data?.name} 
-                                        className="form-control p-2"
-                                        {...register2("name", { required: true })} />
-                                    {errors.name && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor="address" className='p-1'>Client's Present Address</label>
-                                    <input type="text"
-                                        defaultValue={user?.data?.address} 
-                                        className="form-control p-2"
-                                        {...register2("address", { required: true })} />
-                                    {errors.address && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor="phone" className='p-1'>Client's Phone Number</label>
-                                    <input type="number"
-                                        defaultValue={user?.data?.phone} 
-                                        className="form-control p-2"
-                                        {...register2("phone", { required: true })} />
-                                    {errors.phone && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor="car_license" className='p-1'>Car License Number</label>
-                                    <input type="text"
-                                        defaultValue={user?.data?.car_license} 
-                                        className="form-control p-2"
-                                        {...register2("car_license", { required: true })} />
-                                    {errors.car_license && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor="car_engine" className='p-1'>Car Engine Number</label>
-                                    <input type="text"
-                                        defaultValue={user?.data?.car_engine} 
-                                        className="form-control p-2"
-                                        {...register2("car_engine", { required: true })} />
-                                    {errors.car_engine && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor="date" className='p-1'>Appointment Date</label>
-                                    <input type="date"
-                                        defaultValue={user?.data?.date} 
-                                        className="form-control p-2"
-                                        {...register2("date", { required: true })} />
-                                    {errors.date && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor="mechanicId" className='p-1'>Mechanic Id</label>
-                                    <input type="text"
-                                        defaultValue={user?.mechanicId} 
-                                        className="form-control p-2"
-                                        {...register2("mechanicId", { required: true })} />
-                                    {errors.mechanicId && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <div className="form-group mt-2">
-                                    <label htmlFor="mechanicName" className='p-1'>Mechanic Name</label>
-                                    <input type="text"
-                                        defaultValue={user?.mechanicName} 
-                                        className="form-control p-2"
-                                        {...register2("mechanicName", { required: true })} />
-                                    {errors.mechanicName && <span className='text-danger'>This Field is required</span>}
-                                </div>
-
-                                <p><small className="form-text text-danger">Double Check information before updating!</small></p>
-                                <input className='btn btn-dark p-2 mt-2' type="submit" value='Update' />
-                            </form>
-                            }
-                        </div>
+                        
 
                     </div>
 
@@ -383,8 +298,7 @@ const Dashboard = () => {
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Phone</th>
-                                            <th>Car License</th>
-                                            <th>Car Engine</th>
+                                           
                                             <th>Remove</th>
                                         </tr>
                                     </thead>
@@ -398,8 +312,7 @@ const Dashboard = () => {
                                                     <td>{user.email}</td>
                                                     <td>{user.address}</td>
                                                     <td>{user.phone}</td>
-                                                    <td>{user.car_license}</td>
-                                                    <td>{user.car_engine}</td>
+                                                    
                                                     <td>
                                                         <div className="d-flex">
                                                             {/* <button onClick={() => navigate(`/mechanic/${user._id}`)} className='btn btn-sm btn-secondary mx-2'>View</button> */}

@@ -26,13 +26,13 @@ const Mechanic = () => {
     }
 
     useEffect(() => {
-        fetch(`https://raufuautomotive.herokuapp.com/mechanic/${id}`)
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/mechanic/${id}`)
             .then(res => res.json())
             .then(data => setMechanic(data))
     }, [id])
 
     useEffect(() => {
-        fetch(`https://raufuautomotive.herokuapp.com/orders/${mechanic._id}`)
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/orders/${mechanic._id}`)
             .then(res => res.json())
             .then(data => setAllBookings(data.orders))
     }, [mechanic._id])
@@ -50,7 +50,7 @@ const Mechanic = () => {
         <div className='bg-brand bg-brand-container'>
             <Navbar />
             <div className="container">
-                <h1 className='mt-5 fs-4 text-center'>Mechanic Information</h1>
+                <h1 className='mt-5 fs-4 text-center'>Service Information</h1>
 
                 {
                     mechanic?._id ? <div className="row mt-5 justify-content-center align-items-center">

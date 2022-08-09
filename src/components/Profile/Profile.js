@@ -15,7 +15,7 @@ const Profile = () => {
     const [userInfo, setUserInfo] = useState([]);
 
     useEffect(()=>{
-        fetch(`https://raufuautomotive.herokuapp.com/user/${user.email}`)
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/user/${user.email}`)
         .then(res => res.json())
         .then(data => {
             setUserInfo(data.user)})
@@ -23,7 +23,7 @@ const Profile = () => {
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        fetch(`https://raufuautomotive.herokuapp.com/user/${userInfo._id}`, {
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/user/${userInfo._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -163,16 +163,6 @@ const Profile = () => {
                                     <div className="form-group mt-2">
                                         <label htmlFor="address" className='p-1'>Address</label>
                                         <input type="text" defaultValue={userInfo?.address} className="form-control p-2" {...register("address")} />
-                                    </div>
-
-                                    <div className="form-group mt-2">
-                                        <label htmlFor="car_engine" className='p-1'>Car Engine</label>
-                                        <input type="text" defaultValue={userInfo?.car_engine} className="form-control p-2" {...register("car_engine")} />
-                                    </div>
-
-                                    <div className="form-group mt-2">
-                                        <label htmlFor="car_license" className='p-1'>Car License</label>
-                                        <input type="text" defaultValue={userInfo?.car_license} className="form-control p-2" {...register("car_license")} />
                                     </div>
 
                                     <input className='btn btn-dark p-2 mt-2 mx-auto d-block' type="submit" value='Submit' />

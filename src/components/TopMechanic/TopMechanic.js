@@ -13,7 +13,7 @@ const TopMechanic = () => {
     const [topMechanics, setTopMechanics] = useState([]);
 
     useEffect(()=>{
-        fetch('https://raufuautomotive.herokuapp.com/mechanics')
+        fetch('https://homecleaningserviceofbd.herokuapp.com/ServiceBoys')
         .then(res => res.json())
         .then(data => setMechanics(data))
     },[])
@@ -27,7 +27,7 @@ const TopMechanic = () => {
 
     return (
         <div>
-            <h1 style={{ fontSize: '22px', color: '#212529', fontWeight: '700' }} className='mt-5'>Top Mechanics of This Week</h1>
+            <h1 style={{ fontSize: '22px', color: '#212529', fontWeight: '700' }} className='mt-5'>Top Services of This Week</h1>
 
             <div className="row mechanics-container justify-content-center align-items-center">
                 {

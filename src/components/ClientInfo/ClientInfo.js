@@ -24,7 +24,7 @@ const ClientInfo = () => {
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
-        fetch(`https://raufuautomotive.herokuapp.com/user/${user.email}`)
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/user/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data.user);
@@ -41,7 +41,7 @@ const ClientInfo = () => {
 
     // update userIno 
     const userInfoUpdate =(data) =>{
-        fetch(`https://raufuautomotive.herokuapp.com/user/${userInfo._id}`, {
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/user/${userInfo._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ const ClientInfo = () => {
             mechanicId: mechanicId,
             mechanicName: mechanicName
         };
-        fetch('https://raufuautomotive.herokuapp.com/order', {
+        fetch('https://homecleaningserviceofbd.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -106,19 +106,6 @@ const ClientInfo = () => {
                                 {errors.phone && <span className='text-danger'>This Field is required</span>}
                             </div>
 
-                            <div className="form-group mt-2">
-                                <label htmlFor="car_license" className='p-1'>Car License Number</label>
-                                <input type="text" defaultValue={userInfo?.car_license} className="form-control p-2"
-                                    {...register("car_license", { required: true })} />
-                                {errors.car_license && <span className='text-danger'>This Field is required</span>}
-                            </div>
-
-                            <div className="form-group mt-2">
-                                <label htmlFor="car_engine" className='p-1'>Car Engine Number</label>
-                                <input type="text" defaultValue={userInfo?.car_engine} className="form-control p-2"
-                                    {...register("car_engine", { required: true })} />
-                                {errors.car_engine && <span className='text-danger'>This Field is required</span>}
-                            </div>
 
                             <div className="form-group mt-2">
                                 <label htmlFor="date" className='p-1'>Appointment Date</label>

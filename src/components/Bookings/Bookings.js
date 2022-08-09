@@ -18,7 +18,7 @@ const Bookings = () => {
 
     const [bookings, setBookings] = useState([]);
     useEffect(()=>{
-        fetch(`https://raufuautomotive.herokuapp.com/orders`)
+        fetch(`https://homecleaningserviceofbd.herokuapp.com/orders`)
             .then(res => res.json())
             .then(data => {
                 setBookings(data.orders);
@@ -40,9 +40,7 @@ const Bookings = () => {
                                             <th>Id</th>
                                             <th>Client Name</th>
                                             <th>Date</th>
-                                            <th>Mechanic Name</th>
-                                            <th>Car Engine</th>
-                                            <th>Car License</th>
+                                            <th>Service Name</th>
                                             <th>Client Phone</th>
                                             <th>Client Address</th>
                                         </tr>
@@ -55,8 +53,6 @@ const Bookings = () => {
                                                     <td>{booking?.data?.name}</td>
                                                     <td>{booking?.data?.date}</td>
                                                     <td>{booking?.mechanicName}</td>
-                                                    <td>{booking?.data?.car_engine}</td>
-                                                    <td>{booking?.data?.car_license}</td>
                                                     <td>{booking?.data?.phone}</td>
                                                     <td>{booking?.data?.address}</td>
                                                     {/* <td><button onClick={() => removeFromDb(bookings.id)} className='btn btn-danger'>Remove</button></td> */}

@@ -9,7 +9,10 @@ const Home = () => {
             <Navbar />
 
             <div data-aos="fade-up" style={{maxHeight:'400px'}} className="container hero-container my-5">
-                <Hero />
+                {/* <Hero /> */}
+                <h1 style={{textAlign:'center', fontSize:'20px' ,fontWeight:'bold'}}>No.1 Cleaning Service
+Platform of Bangladesh
+Book professional cleaning and handyman services, on-demand!</h1>
             </div>
 
             <div data-aos="fade-up" className="container">

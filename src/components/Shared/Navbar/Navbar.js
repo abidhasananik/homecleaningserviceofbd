@@ -31,7 +31,7 @@ const Navbar = () => {
                             return {
                                 color: isActive ? "red" : "",
                             };
-                        }} className="nav-link" to="/mechanics">Mechanics</NavLink>
+                        }} className="nav-link" to="/mechanics">Services</NavLink>
 
                         {
                             user.email && 
