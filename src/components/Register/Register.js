@@ -145,7 +145,7 @@ const Register = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'Registration successful',
-                text: `Welcome ${name} to Raufu Automotive!`
+                text: `Welcome ${name} to Home Cleaning Service of Bangladesh!`
             })
         })
     }
