@@ -26,7 +26,7 @@ const Login = () => {
                 result && Swal.fire({
                     icon: 'success',
                     // title: `Welcome ${result.user.displayName}!`,
-                    title: `Welcome to Raufu Automotive!`,
+                    title: `Welcome to Home Cleaning Service of Bangladesh!`,
                     text: 'You are now logged in!'
                 })
                 // localStorage.setItem('refreshToken', result.user.stsTokenManager.refreshToken);
