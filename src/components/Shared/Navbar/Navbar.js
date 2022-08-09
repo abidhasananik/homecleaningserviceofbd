@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../../../images/logo.svg';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
@@ -12,7 +11,7 @@ const Navbar = () => {
             <div className="container">
 
                 <NavLink className="navbar-brand" to="/">
-                    <img src={logo} width={50} style={{transform: 'scaleX(-1)'}} className='img-fluid' alt="logo" /> Raufu Automotive
+                Home Cleaning Service of Bangladesh
                 </NavLink>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
