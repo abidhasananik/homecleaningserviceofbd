@@ -5,13 +5,13 @@ import Navbar from '../Shared/Navbar/Navbar';
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
-import { computeHeadingLevel } from '@testing-library/react';
+// import { computeHeadingLevel } from '@testing-library/react';
 
 const Dashboard = () => {
 
     const navigate = useNavigate();
     // const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0);
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
     const [mechanics, setMechanics] = useState([]);
     // get mechanics from database
     useEffect(() => {
@@ -51,7 +51,7 @@ const Dashboard = () => {
     }, [])
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { register: register2, handleSubmit: handleSubmit2 } = useForm();
+    // const { register: register2, handleSubmit: handleSubmit2 } = useForm();
 
     const onSubmit = data => addMechanic(data);
 
@@ -122,49 +122,6 @@ const Dashboard = () => {
                 })
             })
     }
-    const onSubmit2 = data => {
-        const bookingData = {
-            data:{
-                name: data.name,
-                address: data.address,
-                car_engine: data.car_engine,
-                car_license: data.car_license,
-                date: data.date,
-                phone: data.phone,
-            },
-            mechanicName: data.mechanicName,
-            mechanicId: data.mechanicId
-        }
-        updateOrder(bookingData);
-    }
-
-    // update order to database
-    const updateOrder = (bookingData) => {
-        const orderDetails = bookingData;
-        fetch(`https://homecleaningserviceofbd.herokuapp.com/order/${user._id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(orderDetails)
-        })
-            .then(res => res.json())
-            .then(data => {
-                (data.status === true) ? Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: data.message,
-                }) :
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: data.message,
-                    })
-                document.getElementById('edit_appointments').style.display = 'none';
-            })
-    }
-
-    // console.log(mechanics)
 
     return (
         <div>

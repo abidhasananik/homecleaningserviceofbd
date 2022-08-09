@@ -1,5 +1,5 @@
 import React from 'react';
-import Hero from '../Hero/Hero';
+// import Hero from '../Hero/Hero';
 import Navbar from '../Shared/Navbar/Navbar';
 import TopMechanic from '../TopMechanic/TopMechanic';
 
