@@ -61,7 +61,7 @@ const Navbar = () => {
                        
 
                         {
-                            (user.email === 'eftykharrahman@gmail.com') && <NavLink onClick={() => { window.scrollTo(0, 0); }} style={({ isActive }) => {
+                            (user.email === 'md.abid.hasan1@g.bracu.ac.bd') && <NavLink onClick={() => { window.scrollTo(0, 0); }} style={({ isActive }) => {
                                 return {
                                     color: isActive ? "red" : "",
                                 };
